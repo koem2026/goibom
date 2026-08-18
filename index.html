@@ -195,6 +195,12 @@
     text-align: center;
     margin-bottom: 10px;
   }
+  .or-divider{
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    text-align: center;
+    margin: 4px 0 14px;
+  }
   button.cta:hover{ background: var(--gold); }
   button.cta:active{ transform: scale(0.97); }
   button.cta:focus-visible{
@@ -302,7 +308,15 @@
     </div>
 
     <a class="cta whatsapp-cta" href="https://wa.me/2348063922752?text=Hi%2C%20I%27d%20like%20early%20access%20to%20GoIbom%21" target="_blank" rel="noopener">Get early access on WhatsApp</a>
-    <p class="form-note">Tap to message us directly — no spam, one message when we launch.</p>
+
+    <p class="or-divider">or leave your email/phone and we'll reach you</p>
+
+    <form class="waitlist" action="https://formspree.io/f/xaewlqav" method="POST">
+      <input type="text" name="contact" placeholder="Phone number or email" aria-label="Phone number or email" required>
+      <input type="hidden" name="_next" value="https://formspree.io/thanks">
+      <button type="submit" class="cta">Notify me</button>
+    </form>
+    <p class="form-note">No spam, one message when we launch.</p>
 
     <div class="features">
       <div class="feature">
