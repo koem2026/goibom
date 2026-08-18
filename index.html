@@ -175,7 +175,7 @@
     border-color: var(--gold);
     box-shadow: 0 0 0 3px rgba(231,178,60,0.18);
   }
-  button.cta{
+  button.cta, a.cta{
     background: var(--clay);
     color: #1a0f0a;
     border: none;
@@ -187,6 +187,13 @@
     cursor: pointer;
     transition: transform 0.15s ease, background 0.15s ease;
     white-space: nowrap;
+    text-decoration: none;
+    display: inline-block;
+  }
+  a.whatsapp-cta{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
   }
   button.cta:hover{ background: var(--gold); }
   button.cta:active{ transform: scale(0.97); }
@@ -294,13 +301,8 @@
       </svg>
     </div>
 
-    <form class="waitlist" id="waitlistForm" action="https://formspree.io/f/xaewlqav" method="POST">
-      <input type="text" name="contact" id="contactInput" placeholder="Phone number or email" aria-label="Phone number or email" required>
-      <input type="hidden" name="_next" value="https://formspree.io/thanks">
-      <button type="submit" class="cta">Get early access</button>
-    </form>
-    <p class="form-note" id="formNote">Be first to know when GoIbom launches in Uyo. No spam, one message when we're ready.</p>
-    <p class="form-success" id="formSuccess">✓ You're on the list. See you at launch.</p>
+    <a class="cta whatsapp-cta" href="https://wa.me/2348063922752?text=Hi%2C%20I%27d%20like%20early%20access%20to%20GoIbom%21" target="_blank" rel="noopener">Get early access on WhatsApp</a>
+    <p class="form-note">Tap to message us directly — no spam, one message when we launch.</p>
 
     <div class="features">
       <div class="feature">
@@ -325,13 +327,6 @@
       <span class="coords">UYO, AKWA IBOM STATE</span>
     </footer>
   </div>
-
-<script>
-  // Native form submission — no JS interception.
-  // The browser sends the POST directly to Formspree and follows the
-  // redirect to the _next URL. This avoids fetch/CORS quirks that can
-  // affect some mobile browsers.
-</script>
 
 </body>
 </html>
