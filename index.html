@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GoIbom — Every place in Akwa Ibom, one tap away</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0E2318;
+    --bg-2: #16301F;
+    --paper: #F4EFE1;
+    --clay: #E2673B;
+    --gold: #E7B23C;
+    --river: #4FA0B8;
+    --line: rgba(244,239,225,0.14);
+    --text: #F4EFE1;
+    --text-dim: rgba(244,239,225,0.62);
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(79,160,184,0.16), transparent 60%),
+      radial-gradient(ellipse 700px 600px at 100% 10%, rgba(231,178,60,0.08), transparent 55%),
+      var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* NAV */
+  nav.wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-top: 28px;
+    padding-bottom: 28px;
+  }
+  .brand{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size: 1.15rem;
+    letter-spacing: 0.01em;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .brand .dot{
+    width:8px; height:8px; border-radius:50%;
+    background: var(--clay);
+    box-shadow: 0 0 0 3px rgba(226,103,59,0.2);
+  }
+  .coords{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 0.03em;
+  }
+
+  /* HERO */
+  header.hero{
+    padding-top: 8px;
+    padding-bottom: 12px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0 0 18px;
+  }
+  .eyebrow::before{ content:"◆ "; }
+
+  h1{
+    font-family:'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: clamp(2.1rem, 7vw, 3.1rem);
+    line-height: 1.06;
+    letter-spacing: -0.01em;
+    margin: 0 0 20px;
+  }
+  h1 em{
+    font-style: italic;
+    color: var(--clay);
+  }
+
+  .sub{
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    max-width: 46ch;
+    margin: 0 0 40px;
+  }
+
+  /* ROUTE MAP SIGNATURE */
+  .route{
+    position: relative;
+    margin: 0 0 48px;
+    padding: 28px 20px 24px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+    overflow: hidden;
+  }
+  .route svg{ display:block; width:100%; height:auto; }
+  .route-path{
+    fill:none;
+    stroke: var(--clay);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 4 7;
+  }
+  .route-path.solid{
+    stroke: var(--river);
+    stroke-dasharray: none;
+    opacity: 0.55;
+  }
+  .stop{ fill: var(--paper); stroke: var(--bg); stroke-width: 2; }
+  .stop.active{ fill: var(--gold); }
+  .stop-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    fill: var(--text-dim);
+    letter-spacing: 0.02em;
+  }
+  .stop-label.active{ fill: var(--text); }
+
+  @media (prefers-reduced-motion: no-preference){
+    .route-path{
+      animation: draw 2.6s ease-out forwards;
+    }
+    @keyframes draw{
+      from{ stroke-dashoffset: 340; }
+      to{ stroke-dashoffset: 0; }
+    }
+  }
+
+  /* WAITLIST FORM */
+  form.waitlist{
+    display:flex;
+    gap: 10px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  input[type="text"]{
+    flex: 1 1 220px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text);
+    min-width: 0;
+  }
+  input[type="text"]::placeholder{ color: rgba(244,239,225,0.4); }
+  input[type="text"]:focus{
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(231,178,60,0.18);
+  }
+  button.cta{
+    background: var(--clay);
+    color: #1a0f0a;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 22px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease;
+    white-space: nowrap;
+  }
+  button.cta:hover{ background: var(--gold); }
+  button.cta:active{ transform: scale(0.97); }
+  button.cta:focus-visible{
+    outline: 2px solid var(--paper);
+    outline-offset: 2px;
+  }
+  .form-note{
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin: 0 0 56px;
+  }
+  .form-success{
+    display:none;
+    font-size: 0.9rem;
+    color: var(--gold);
+    margin: 0 0 56px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  /* FEATURES */
+  .features{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 64px;
+  }
+  @media (min-width: 620px){
+    .features{ grid-template-columns: repeat(3, 1fr); }
+  }
+  .feature{
+    background: var(--bg-2);
+    padding: 26px 22px;
+  }
+  .feature .mark{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--river);
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+    display:block;
+  }
+  .feature h3{
+    font-family:'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.08rem;
+    margin: 0 0 8px;
+  }
+  .feature p{
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    margin: 0;
+  }
+
+  footer{
+    border-top: 1px solid var(--line);
+    padding: 26px 0 40px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  footer .coords{ font-size: 0.68rem; }
+  footer .tag{
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+</style>
+</head>
+<body>
+
+  <nav class="wrap">
+    <div class="brand"><span class="dot"></span>GoIbom</div>
+    <div class="coords">5.0377°N&nbsp; 7.9128°E</div>
+  </nav>
+
+  <div class="wrap">
+    <header class="hero">
+      <p class="eyebrow">Coming soon to Akwa Ibom</p>
+      <h1>Every place in<br>Akwa Ibom, <em>one tap</em> away.</h1>
+      <p class="sub">Hotels, markets, hospitals, event centers, and the local spots Google Maps has never heard of — with directions that actually work.</p>
+    </header>
+
+    <div class="route" role="img" aria-label="Illustrative route map connecting Uyo landmarks: Airport, Main Market, Ibom Tropicana, and Qua Iboe River">
+      <svg viewBox="0 0 640 130" preserveAspectRatio="xMidYMid meet">
+        <path class="route-path solid" d="M30,95 C120,40 180,110 260,60 C330,20 380,90 460,55 C520,30 560,70 610,35" />
+        <path class="route-path" d="M30,95 C120,40 180,110 260,60 C330,20 380,90 460,55 C520,30 560,70 610,35" />
+
+        <circle class="stop" cx="30" cy="95" r="4.5" />
+        <text class="stop-label" x="30" y="115" text-anchor="middle">AIRPORT</text>
+
+        <circle class="stop" cx="260" cy="60" r="4.5" />
+        <text class="stop-label" x="260" y="80" text-anchor="middle">MAIN MARKET</text>
+
+        <circle class="stop active" cx="460" cy="55" r="5.5" />
+        <text class="stop-label active" x="460" y="78" text-anchor="middle">IBOM TROPICANA</text>
+
+        <circle class="stop" cx="610" cy="35" r="4.5" />
+        <text class="stop-label" x="595" y="20" text-anchor="middle">QUA IBOE RIVER</text>
+      </svg>
+    </div>
+
+    <form class="waitlist" id="waitlistForm" action="https://formspree.io/f/xaewlqav" method="POST">
+      <input type="text" name="contact" id="contactInput" placeholder="Phone number or email" aria-label="Phone number or email" required>
+      <input type="hidden" name="_next" value="https://formspree.io/thanks">
+      <button type="submit" class="cta">Get early access</button>
+    </form>
+    <p class="form-note" id="formNote">Be first to know when GoIbom launches in Uyo. No spam, one message when we're ready.</p>
+    <p class="form-success" id="formSuccess">✓ You're on the list. See you at launch.</p>
+
+    <div class="features">
+      <div class="feature">
+        <span class="mark">01 — SEARCH</span>
+        <h3>Find anywhere</h3>
+        <p>Search by name, category, or landmark — including the places bigger map apps miss.</p>
+      </div>
+      <div class="feature">
+        <span class="mark">02 — ROUTE</span>
+        <h3>Real directions</h3>
+        <p>Turn-by-turn routes built around how Akwa Ibom roads actually work.</p>
+      </div>
+      <div class="feature">
+        <span class="mark">03 — DISCOVER</span>
+        <h3>Local finds</h3>
+        <p>Markets, eateries, and hidden spots, recommended by people who actually live here.</p>
+      </div>
+    </div>
+
+    <footer>
+      <span class="tag">Built in Akwa Ibom 🇳🇬</span>
+      <span class="coords">UYO, AKWA IBOM STATE</span>
+    </footer>
+  </div>
+
+<script>
+  // Native form submission — no JS interception.
+  // The browser sends the POST directly to Formspree and follows the
+  // redirect to the _next URL. This avoids fetch/CORS quirks that can
+  // affect some mobile browsers.
+</script>
+
+</body>
+</html>
